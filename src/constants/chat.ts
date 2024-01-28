@@ -12,10 +12,10 @@ const dateString =
 
 // default system message obtained using the following method: https://twitter.com/DeminDimin/status/1619935545144279040
 export const _defaultSystemMessage =
-  import.meta.env.VITE_DEFAULT_SYSTEM_MESSAGE ??
-  `You are ChatGPT, a large language model trained by OpenAI.
-Carefully heed the user's instructions. 
-Respond using Markdown.`;
+  import.meta.env.VITE_DEFAULT_SYSTEM_MESSAGE ?? '';
+//   `You are ChatGPT, a large language model trained by OpenAI.
+// Carefully heed the user's instructions.
+// Respond using Markdown.`;
 
 export const modelOptions: ModelOptions[] = [
   'gpt-3.5-turbo',
@@ -23,13 +23,16 @@ export const modelOptions: ModelOptions[] = [
   'gpt-3.5-turbo-1106',
   'gpt-4',
   'gpt-4-32k',
-  'gpt-4-1106-preview'
+  'gpt-4-1106-preview',
+  'gpt-4-0314',
+  'gpt-4-0125-preview',
+  'gpt-4-turbo-preview',
+  'ft:gpt-3.5-turbo-0613:personal::83mo4pPr',
   // 'gpt-3.5-turbo-0301',
-  // 'gpt-4-0314',
   // 'gpt-4-32k-0314',
 ];
 
-export const defaultModel = 'gpt-3.5-turbo';
+export const defaultModel = 'gpt-4-turbo-preview';
 
 export const modelMaxToken = {
   'gpt-3.5-turbo': 4096,
@@ -45,6 +48,9 @@ export const modelMaxToken = {
   'gpt-4-32k-0314': 32768,
   'gpt-4-32k-0613': 32768,
   'gpt-4-1106-preview': 128000,
+  'gpt-4-turbo-preview': 128000,
+  'gpt-4-0125-preview': 128000,
+  'ft:gpt-3.5-turbo-0613:personal::83mo4pPr': 4096,
 };
 
 export const modelCost = {
@@ -100,6 +106,18 @@ export const modelCost = {
     prompt: { price: 0.01, unit: 1000 },
     completion: { price: 0.03, unit: 1000 },
   },
+  'gpt-4-turbo-preview': {
+    prompt: { price: 0.01, unit: 1000 },
+    completion: { price: 0.03, unit: 1000 },
+  },
+  'gpt-4-0125-preview': {
+    prompt: { price: 0.01, unit: 1000 },
+    completion: { price: 0.03, unit: 1000 },
+  },
+  'ft:gpt-3.5-turbo-0613:personal::83mo4pPr': {
+    prompt: { price: 0.0015, unit: 1000 },
+    completion: { price: 0.002, unit: 1000 },
+  },
 };
 
 export const defaultUserMaxToken = 4000;
@@ -107,7 +125,7 @@ export const defaultUserMaxToken = 4000;
 export const _defaultChatConfig: ConfigInterface = {
   model: defaultModel,
   max_tokens: defaultUserMaxToken,
-  temperature: 1,
+  temperature: 0.7,
   presence_penalty: 0,
   top_p: 1,
   frequency_penalty: 0,
